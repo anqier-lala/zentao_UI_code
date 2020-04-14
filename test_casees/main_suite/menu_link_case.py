@@ -11,10 +11,8 @@ from common import set_driver  ##自定义
 class LoginFailCase(unittest.TestCase):
     def setUp(self) -> None:
         pass
-        # self.driver = set_driver.set_driver()
 
     def tearDown(self) -> None:
-        time.sleep(2)
         pass
 
     def test_link_succes1(self):

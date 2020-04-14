@@ -6,6 +6,7 @@ from common.config_utils import config   #直接导入类的对象
 
 
 def login(driver,username,password):
+    driver.get('http://127.0.0.1/zentao/user-login.html')
     driver.find_element(By.XPATH, '//input[@name="account"]').send_keys(config.get_user_name)
     driver.find_element(By.XPATH, "//input[@class='form-control'][@name='password']").send_keys(config.get_password)
     driver.find_element(By.XPATH, "//button[@type='submit'][@class='btn btn-primary']").click()

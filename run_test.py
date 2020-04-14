@@ -21,7 +21,7 @@ main_suite.addTest( discover )
 file=open(html_path,'wb')
 html_runner=HTMLTestRunner.HTMLTestRunner(stream=file,
                                           title='调试自动化demo1测试',
-                                          description='登录及跳转链接测试')
+                                          description='登录退出及跳转链接测试')
 html_runner.run(main_suite)
 file.flush()
 file.close()

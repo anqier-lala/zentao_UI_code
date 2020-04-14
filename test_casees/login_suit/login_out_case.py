@@ -9,7 +9,7 @@ import HTMLTestRunner
 from common import set_driver  ##自定义
 
 
-class LoginFailCase(unittest.TestCase):
+class LoginOutCase(unittest.TestCase):
     def setUp(self) -> None:
         self.driver=set_driver.set_driver()
         self.driver.get('http://127.0.0.1/zentao/user-login.html')
@@ -19,24 +19,26 @@ class LoginFailCase(unittest.TestCase):
         self.driver.quit()
 
 
-    def test_login_succes1(self):
+    def test_login_out(self):
         self.driver.find_element(By.XPATH, '//input[@name="account"]').send_keys("admin")
         time.sleep(1)
         self.driver.find_element(By.XPATH, "//input[@class='form-control'][@name='password']").send_keys("201314ANQIER1")
         time.sleep(1)
         self.driver.find_element(By.XPATH, "//button[@type='submit'][@class='btn btn-primary']").click()
-        text1 = self.driver.find_element(By.XPATH, "//div[1]/div/nav/ul/li[1]/a/span").text
-        self.assertEqual(text1, "我的地盘", "test_login_succes1案例执行失败")
-        print("test1pass，登录成功")
-        # actual=self.find_element(By.XPATH, "//span[@class='user-name']").text
-        # self.assertEqual(actual,'admin','test_login_succes1用例执行失败')
+        time.sleep(1)
+        self.driver.find_element(By.XPATH, "//span[@class='user-name']").click()
+        self.driver.find_element(By.XPATH, "//div[1]/div/div/div/ul/li/ul/li[13]/a").click()
+        time.sleep(1)
+        text2 = self.driver.find_element(By.XPATH, "//button[@type='submit'][@class='btn btn-primary']").text
+        self.assertEqual(text2, "登录", "test_login_out案例执行失败")
+        print("test2pass，退出成功")
 
     def test_login_succes2(self):
         self.assertGreater(4, 1)
 
 if __name__ == '__main__':
     suite01=unittest.TestSuite()
-    suite01.addTest(LoginFailCase('test_login_succes1'))
+    suite01.addTest(LoginOutCase('test_login_out'))
     #方式三：
     file=open('result.html','wb')
     html_runner=HTMLTestRunner.HTMLTestRunner( stream=file,
