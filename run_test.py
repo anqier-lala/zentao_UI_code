@@ -6,14 +6,10 @@ import HTMLTestRunner
 current_path=os.path.dirname(__file__)
 report_path=os.path.join(current_path,'report')
 
-# print(report_path)   正确
-
 cases_path=os.path.join(current_path,'test_casees')
-print(cases_path)
 
-html_path=os.path.join( report_path,'report_%s.html'%time.strftime('%Y_%m_%d_%H_%M_%S'))
+html_path=os.path.join( report_path,'report_%s.html'%(time.strftime('%Y_%m_%d_%H_%M_%S')))
 
-# print(html_path)
 
 discover=unittest.defaultTestLoader.discover(start_dir=cases_path,
                                              pattern='*_case.py',
@@ -29,3 +25,5 @@ html_runner=HTMLTestRunner.HTMLTestRunner(stream=file,
 html_runner.run(main_suite)
 file.flush()
 file.close()
+
+
