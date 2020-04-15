@@ -25,9 +25,10 @@ class LoginFailCase(unittest.TestCase):
         self.driver.find_element(By.XPATH, "//input[@class='form-control'][@name='password']").send_keys("201314ANQIER1")
         time.sleep(1)
         self.driver.find_element(By.XPATH, "//button[@type='submit'][@class='btn btn-primary']").click()
-        text1 = self.driver.find_element(By.XPATH, "//div[1]/div/nav/ul/li[1]/a/span").text
-        self.assertEqual(text1, "我的地盘", "test_login_succes1案例执行失败")
-        print("test1pass，登录成功")
+        # text1 = self.driver.find_element(By.XPATH, "//div[1]/div/nav/ul/li[1]/a/span").text
+        # self.assertEqual(text1, "我的地盘", "test_login_succes1案例执行失败")
+        self.assertTrue(EC.text_to_be_present_in_element((By.XPATH,'//div[1]/div/nav/ul/li[1]/a/span'),'我的地盘'))
+
         # actual=self.find_element(By.XPATH, "//span[@class='user-name']").text
         # self.assertEqual(actual,'admin','test_login_succes1用例执行失败')
 

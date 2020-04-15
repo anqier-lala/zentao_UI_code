@@ -1,23 +1,45 @@
 import os
 import time
 import unittest
+import HTMLTestRunner
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from common import set_driver  #自定义的打开浏览器并使之最大化
+from common.config_utils import config
+from common.Login import login
+# from common import Login  #自定义的登录方法
 
-from common import set_driver  ##自定义
-
-
-class LoginFailCase(unittest.TestCase):
+class Link_Succes(unittest.TestCase):
     def setUp(self) -> None:
-        pass
+        self.driver=set_driver.set_driver()
 
     def tearDown(self) -> None:
         pass
 
-    def test_link_succes1(self):
-        self.assertEqual(1, 1)
+    def test_link1_succes(self):
+        self.assertGreater(4, 1)
+        # self.driver.get(config.get_url)
+        # self.login(config.get_user_name, config.get_password)
+        # self.assertTrue(EC.text_to_be_present_in_element((By.XPATH,'//div[@class="panel-title"]'),'最新动态'))
 
-    def test_link_succes2(self):
+
+    def test_link2_succes(self):
         self.assertGreater(4, 1)
 
+
+if __name__ == '__main__':
+    print(config.get_user_name)
+    print(config.get_password)
+
+    suite01=unittest.TestSuite()
+    suite01.addTest(Link_Succes('test_link1_succes'))
+
+
+    #方式三：
+    file=open('result.html','wb')
+    html_runner=HTMLTestRunner.HTMLTestRunner( stream=file,
+                                               title='new',
+                                               description='描述')
+    html_runner.run(suite01)
+    file.close()

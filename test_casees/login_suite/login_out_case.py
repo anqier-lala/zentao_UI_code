@@ -33,8 +33,6 @@ class LoginOutCase(unittest.TestCase):
         self.assertEqual(text2, "登录", "test_login_out案例执行失败")
         print("test2pass，退出成功")
 
-    def test_login_succes2(self):
-        self.assertGreater(4, 1)
 
 if __name__ == '__main__':
     suite01=unittest.TestSuite()
