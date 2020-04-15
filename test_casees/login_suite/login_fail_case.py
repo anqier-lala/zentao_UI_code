@@ -10,7 +10,8 @@ from common import set_driver   ##自定义
 
 class LoginFailCase(unittest.TestCase):
     def setUp(self) -> None:
-        pass
+        self.driver = set_driver.set_driver()
+        self.driver.get('http://127.0.0.1/zentao/user-login.html')
 
 
     def tearDown(self) -> None:
@@ -18,7 +19,18 @@ class LoginFailCase(unittest.TestCase):
 
 
     def test_login_fail1(self):
-        self.assertGreater(2, 1)
+        self.driver.find_element(By.XPATH, '//input[@name="account"]').send_keys("admin1")
+        time.sleep(1)
+        self.driver.find_element(By.XPATH, "//input[@class='form-control'][@name='password']").send_keys("201314ANQIER1")
+        time.sleep(1)
+        self.driver.find_element(By.XPATH, "//button[@type='submit'][@class='btn btn-primary']").click()
+        time.sleep(3)
+        alert = self.driver.switch_to.alert  # 切换到js弹窗
+        value = alert.text
+        self.assertEqual(value,'登录失败，请检查您的用户名或密码是否填写正确。','test_login_fail1案例执行失败')
+
+
+
 
     def test_login_fail2(self):
         self.assertGreater(3,1)
